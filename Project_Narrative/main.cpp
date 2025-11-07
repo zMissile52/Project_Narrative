@@ -18,7 +18,8 @@ int main() {
 	RenderWindow window(VideoMode({ width, height }), "Project Narrative");
 
 	//initialise main character
-	MainCharacter mainCharacter(10.f);
+	MainCharacter mainCharacter;
+	Clock clock;
 
 	while (window.isOpen()) {
 		while (auto event = window.pollEvent()) {
@@ -27,6 +28,12 @@ int main() {
 			}
 		}
 		window.clear(Color::Black);
+		float dt = clock.restart().asSeconds();
+		mainCharacter.handleInput();
+		
+		
+		mainCharacter.update(dt, window);
+
 		mainCharacter.draw(window);
 		window.display();
 	}
@@ -38,3 +45,14 @@ int main() {
 
 
 //enemy -> boss
+
+/*
+vois tu ce petit point c'est toi que l'on appelle la vie :
+et la mort c'est lui :
+montre le que tu merite d'existé
+
+game over text : Vous avez perdu la vie
+
+
+win : Vous avez echappez a la mort
+*/
