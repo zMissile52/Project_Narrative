@@ -26,13 +26,26 @@ int main() {
 			if (event->is<Event::Closed>()) {
 				window.close();
 			}
+			if (event->is<Event::MouseButtonPressed>()) {
+				auto mouseEvent = event->getIf<Event::MouseButtonPressed>();
+				if (mouseEvent && mouseEvent->button == Mouse::Button::Left) {
+					mainCharacter.startAttack(window);
+				}
+			}
+			if (event->is<sf::Event::KeyPressed>()) {
+				auto kp = event->getIf<sf::Event::KeyPressed>();
+				if (kp && kp->code == sf::Keyboard::Key::Space) {
+					mainCharacter.startAttack(window);
+				}
+			}
 		}
-		window.clear(Color::Black);
 		float dt = clock.restart().asSeconds();
+		
+		
 		mainCharacter.handleInput();
-		
-		
 		mainCharacter.update(dt, window);
+
+		window.clear(Color::Black);
 
 		mainCharacter.draw(window);
 		window.display();

@@ -43,20 +43,36 @@ void MainCharacter::handleInput() {
 
 void MainCharacter::update(float dt, RenderWindow& window)
 {
-	sf::Vector2f moveOffset = direction * speed * dt;
-	
-	heart.move(moveOffset);
-
-	position = heart.getPosition();
-
-	// Attaque sur espace
-	if (Keyboard::isKeyPressed(Keyboard::Key::Space) || Mouse::isButtonPressed(Mouse::Button::Left)) {
-		attack(window);
+	if (!attacking) {
+		Vector2f moveOffset = direction * speed * dt;
+		heart.move(moveOffset);
+		position = heart.getPosition();
 	}
+	else {
+		attackTimer -= dt;
+		if (attackTimer <= 0.f)
+			attacking = false;
+	}
+
+	if (attackCooldown > 0.f)
+		attackCooldown -= dt;
 
 	// Mise à jour de la hitbox
 	atkzone.update(dt, window);
 	
+}
+
+void MainCharacter::startAttack(RenderWindow& window)
+{
+	if (attacking || attackCooldown > 0.f) {
+		return; // ignore si déjà en attaque ou cooldown actif
+	}
+		
+
+	attack(window);          // déclenche la hitbox
+	attacking = true;        // empêche le mouvement
+	attackTimer = 0.25f;     // durée de l'attaque
+	attackCooldown = 0.4f;   // délai avant nouvelle attaque
 }
 
 void MainCharacter::attack(RenderWindow& window)
