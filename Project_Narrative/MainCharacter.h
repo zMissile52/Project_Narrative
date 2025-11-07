@@ -9,7 +9,7 @@ private:
 	CircleShape heart;
 	Vector2f direction;
 	float speed = 300.f;
-	
+	int hp = 5;
 	//variable pour gestion d'atk
 	HitBox atkzone;
 	float attackTimer = 0;
@@ -18,6 +18,8 @@ private:
 public:
 	MainCharacter();
 	void draw(RenderWindow& w) override;
+
+	int getHP();
 
 	//gere les inputs
 	void handleInput();

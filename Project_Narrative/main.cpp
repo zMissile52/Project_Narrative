@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "MainCharacter.h"
+#include "HUD.h"
 
 using namespace sf;
 
@@ -20,6 +21,8 @@ int main() {
 	//initialise main character
 	MainCharacter mainCharacter;
 	Clock clock;
+
+	HUD menu(&mainCharacter, window);
 
 	while (window.isOpen()) {
 		while (auto event = window.pollEvent()) {
@@ -41,13 +44,19 @@ int main() {
 		}
 		float dt = clock.restart().asSeconds();
 		
-		
+		//update part
 		mainCharacter.handleInput();
 		mainCharacter.update(dt, window);
+		menu.update();
 
+		//reset page
 		window.clear(Color::Black);
 
+		//draw part
 		mainCharacter.draw(window);
+
+		menu.draw(window);
+
 		window.display();
 	}
 

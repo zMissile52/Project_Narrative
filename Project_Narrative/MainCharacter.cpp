@@ -3,7 +3,7 @@
 using namespace sf;
 MainCharacter::MainCharacter()
 {
-	
+	hp = 20;
 	position.x = 100.f;
 	position.y = 100.f;
 	heart = CircleShape(10.f);
@@ -14,6 +14,10 @@ MainCharacter::MainCharacter()
 	heart.setOrigin(Vector2f(bounds.size.x * 0.5f, bounds.size.y * 0.5f));
 
 
+}
+
+int MainCharacter::getHP() {
+	return hp;
 }
 
 
