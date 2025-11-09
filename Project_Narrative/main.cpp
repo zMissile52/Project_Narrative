@@ -17,21 +17,21 @@ int main() {
 	//std::cout << "Welcome to the Project Narrative!" << std::endl;
 	RenderWindow window(VideoMode({ width, height }), "Project Narrative");
 
-	//initialise main character
-	MainCharacter mainCharacter;
+	////initialise main character
+	//MainCharacter mainCharacter;
 
 	////HUD
-	HUD menu(&mainCharacter, window);
+	//HUD menu(&mainCharacter, window);
 
 	////Level
-	Level level1;
-	NPC npc1({ 400.f, 100.f });
-	level1.addEntity(npc1);
+	//Level level1;
+	//NPC npc1({ 400.f, 100.f });
+	//level1.addEntity(npc1);
 
-	/*Game game(window);
+	Game game(window);
 	MainCharacter mainCharacter = game.getMainCharacter();
 	HUD menu = game.getHUD();
-	Level level1 = game.getLevel();*/
+	Level level1 = game.getLevel();
 
 	Clock clock;
 

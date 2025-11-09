@@ -14,6 +14,7 @@ private:
 	
 	//Level
 	Level level1;
+	vector<NPC> npcs;
 
 	//HUD
 	HUD menu;

@@ -12,7 +12,5 @@ public:
 	void draw(sf::RenderWindow& w) override;
 	void update(float dt, sf::RenderWindow& w) override;
 	FloatRect getGlobalBounds() const override;
-
-
 };
 

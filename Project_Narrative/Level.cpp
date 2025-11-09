@@ -69,7 +69,7 @@ bool Level::checkCollision(const FloatRect& bounds) {
 		}
 	}
 
-	for (auto entity : entities) {
+	for (auto& entity : entities) {
 		if (entity->getGlobalBounds().findIntersection(bounds)) {
 			return true;
 		}

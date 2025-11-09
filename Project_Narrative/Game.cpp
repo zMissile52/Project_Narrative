@@ -2,9 +2,8 @@
 
 Game::Game(RenderWindow& window) : menu(&mainCharacter, window)
 {
-	//Level
-	NPC npc1({ 400.f, 100.f });
-	level1.addEntity(npc1);
+	npcs.push_back(NPC({ 400.f, 100.f }));
+	level1.addEntity(npcs.back());
 }
 
 void Game::update(float dt, RenderWindow& window)
@@ -31,7 +30,7 @@ MainCharacter Game::getMainCharacter()
 
 HUD Game::getHUD()
 { 
-	return menu; 
+return menu;
 }
 
 Level Game::getLevel()
