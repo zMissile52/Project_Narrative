@@ -33,7 +33,6 @@ void HitBox::update(float dt, RenderWindow& window) {
 void HitBox::draw(RenderWindow& window) {
     if (alive) {
         window.draw(shape);
-    }
-        
+    }      
 }
 

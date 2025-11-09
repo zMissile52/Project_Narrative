@@ -3,7 +3,7 @@
 using namespace sf;
 MainCharacter::MainCharacter()
 {
-	hp = 20;
+	hp = 15;
 	position.x = 100.f;
 	position.y = 100.f;
 	heart = CircleShape(10.f);
@@ -28,27 +28,33 @@ void MainCharacter::draw(RenderWindow& w)
 }
 
 void MainCharacter::handleInput() {
-	direction = { 0.f, 0.f };
+	velocity = { 0.f, 0.f };
 	if (Keyboard::isKeyPressed(Keyboard::Key::Z)) {
-		direction.y -= 1.f;
+		velocity.y -= 1.f;
 	}
 
 	if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
-		direction.y += 1.f;
+		velocity.y += 1.f;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
-		direction.x -= 1.f;
+		velocity.x -= 1.f;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
-		direction.x += 1.f;
+		velocity.x += 1.f;
+	}
+
+	if (velocity.x != 0.f || velocity.y != 0.f) {
+		direction = velocity;
 	}
 }
 
 
 void MainCharacter::update(float dt, RenderWindow& window)
 {
+	lastPosition = position;
+	
 	if (!attacking) {
-		Vector2f moveOffset = direction * speed * dt;
+		Vector2f moveOffset = velocity * speed * dt;
 		heart.move(moveOffset);
 		position = heart.getPosition();
 	}
@@ -81,19 +87,35 @@ void MainCharacter::startAttack(RenderWindow& window)
 
 void MainCharacter::attack(RenderWindow& window)
 {
-	// Récupère position de la souris dans la fenêtre
-	Vector2i mousePosPixel = Mouse::getPosition(window);
-	Vector2f mousePos = window.mapPixelToCoords(mousePosPixel); // conversion pixels coords du monde
+	
+	// version avec souris
+	//// Récupère position de la souris dans la fenêtre
+	//Vector2i mousePosPixel = Mouse::getPosition(window);
+	//Vector2f mousePos = window.mapPixelToCoords(mousePosPixel); // conversion pixels coords du monde
 
-	// Calcule direction souris joueur
-	Vector2f dir = mousePos - position;
+	//// Calcule direction souris joueur
+	//Vector2f dir = mousePos - position;
 
-	float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
-	if (len != 0)
-		dir /= len; // normalisation
+	//float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
+	//if (len != 0)
+	//	dir /= len; // normalisation
+
+
+	// Si aucune direction enregistrée (par ex. au tout début), on ne fait rien
+	if (direction.x == 0.f && direction.y == 0.f)
+		return;
+
+	// Normalisation (juste au cas où)
+	Vector2f dir = direction;
+	
 
 
 	Vector2f hitboxPos = position + dir * 30.f; // devant le personnage
 
 	atkzone.activate(hitboxPos, 30.f, 0.2f); // taille 40px, durée 0.2s
+}
+
+void MainCharacter::undoMove() {
+	heart.setPosition(lastPosition);
+	position = lastPosition;
 }

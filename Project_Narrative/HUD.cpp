@@ -1,6 +1,7 @@
 #include "HUD.h"
 using namespace std;
 
+
 HUD::HUD(MainCharacter* mc, RenderWindow& w) : hpText(font){
 	Vector2u w_size = w.getSize();
 	main = mc;
@@ -35,11 +36,10 @@ void HUD::draw(RenderWindow& w) {
 
 void HUD::update() {
 	float currentHP = main->getHP();
-	float maxHP = 20.f; // ajoute cette fonction dans MainCharacter
+	float maxHP = 20.f; // faut de quoi recuperer le max hp avec une methode
 
 	// ratio de vie
 	float ratio = currentHP / maxHP;
-	hpText.setString(to_string(ratio));
 	if (ratio < 0.f) ratio = 0.f;
 	if (ratio > 1.f) ratio = 1.f;
 
