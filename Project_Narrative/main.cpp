@@ -34,7 +34,7 @@ int main() {
 	HUD menu = game.getHUD();
 	Level level1 = game.getLevel();
 
-	NarrativeManager narrativeManager;
+	NarrativeManager& narrativeManager = game.getNarrativeManager();
 
 	Clock clock;
 
@@ -59,6 +59,7 @@ int main() {
 				}
 			}
 		}
+		narrativeManager.triggerEvent("start_game");
 			float dt = clock.restart().asSeconds();
 
 			//update part

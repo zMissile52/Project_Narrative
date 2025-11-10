@@ -19,7 +19,7 @@ public:
 	NPC();
 	NPC(Vector2f position);
 	void draw(sf::RenderWindow& w) override;
-	void update(float dt, sf::RenderWindow& w) override {}
+	void update(float dt, sf::RenderWindow& w) override;
 	// dialogue
 	void talk();
 	void endDialogue();

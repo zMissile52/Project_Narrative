@@ -1,5 +1,6 @@
 #include "Game.h"
 
+
 Game::Game(RenderWindow& window) : menu(&mainCharacter, window)
 {
 	npcs.push_back(NPC({ 400.f, 100.f }));
@@ -36,4 +37,8 @@ return menu;
 Level Game::getLevel()
 { 
 	return level1; 
+}
+
+NarrativeManager& Game::getNarrativeManager() {
+	return narrative;
 }
