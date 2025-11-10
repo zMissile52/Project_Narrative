@@ -60,6 +60,10 @@ void NarrativeManager::triggerEvent(const std::string& name) {
 void NarrativeManager::update(float dt) {
     // ici on pourrait faire des effets (texte qui s'affiche progressivement, fade, etc.)
     // mais pour l’instant, on laisse vide pour garder simple
+    if (Keyboard::isKeyPressed(Keyboard::Key::Enter)) {
+        active = false;
+    }
+
 }
 
 void NarrativeManager::draw(RenderWindow& window) {

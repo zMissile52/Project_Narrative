@@ -67,6 +67,8 @@ int main() {
 			mainCharacter.update(dt, window);
 			menu.update();
 			level1.update(dt, mainCharacter, window);
+			narrativeManager.update(dt);
+
 
 			//reset page
 			window.clear(Color::Black);
