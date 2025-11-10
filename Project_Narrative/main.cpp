@@ -80,6 +80,8 @@ int main() {
 			//draw hud
 			menu.draw(window);
 
+			narrativeManager.draw(window);
+
 			window.display();
 
 
