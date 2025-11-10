@@ -30,7 +30,7 @@ int main() {
 	//level1.addEntity(npc1);
 
 	Game game(window);
-	MainCharacter mainCharacter = game.getMainCharacter();
+	MainCharacter& mainCharacter = game.getMainCharacter();
 	HUD menu = game.getHUD();
 	Level level1 = game.getLevel();
 
@@ -63,26 +63,30 @@ int main() {
 			float dt = clock.restart().asSeconds();
 
 			//update part
-			mainCharacter.handleInput();
+			/*mainCharacter.handleInput();
 			mainCharacter.update(dt, window);
 			menu.update();
 			level1.update(dt, mainCharacter, window);
-			narrativeManager.update(dt);
+			narrativeManager.update(dt);*/
+
+			game.update(dt, window);
 
 
 			//reset page
 			window.clear(Color::Black);
 
-			//draw character
-			mainCharacter.draw(window);
+			game.draw(window);
 
-			//draw level
-			level1.draw(window);
+			////draw character
+			//mainCharacter.draw(window);
 
-			//draw hud
-			menu.draw(window);
+			////draw level
+			//level1.draw(window);
 
-			narrativeManager.draw(window);
+			////draw hud
+			//menu.draw(window);
+
+			//narrativeManager.draw(window);
 
 			window.display();
 

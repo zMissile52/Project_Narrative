@@ -13,6 +13,7 @@ void Game::update(float dt, RenderWindow& window)
 	mainCharacter.update(dt, window);
 	menu.update();
 	level1.update(dt, mainCharacter, window);
+	narrative.update(dt);
 }
 
 void Game::draw(RenderWindow& window)
@@ -21,10 +22,10 @@ void Game::draw(RenderWindow& window)
 	level1.draw(window);
 	mainCharacter.draw(window);
 	menu.draw(window);
-	window.display();
+	narrative.draw(window);
 }
 
-MainCharacter Game::getMainCharacter()
+MainCharacter& Game::getMainCharacter()
 {
 	return mainCharacter;
 }

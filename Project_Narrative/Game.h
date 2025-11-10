@@ -26,7 +26,7 @@ public:
 	Game(RenderWindow& window);
 	void update(float dt, RenderWindow& window);
 	void draw(RenderWindow& window);
-	MainCharacter getMainCharacter();
+	MainCharacter& getMainCharacter();
 	HUD getHUD();
 	Level getLevel();
 	NarrativeManager& getNarrativeManager();
