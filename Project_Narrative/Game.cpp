@@ -10,7 +10,9 @@ Game::Game(RenderWindow& window) : menu(&mainCharacter, window)
 void Game::update(float dt, RenderWindow& window)
 {
 	mainCharacter.handleInput();
-	mainCharacter.update(dt, window);
+	if (!narrative.isActive()) {
+		mainCharacter.update(dt, window);
+	}
 	menu.update();
 	level1.update(dt, mainCharacter, window);
 	narrative.update(dt);

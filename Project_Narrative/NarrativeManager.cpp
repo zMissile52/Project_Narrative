@@ -33,6 +33,11 @@ void NarrativeManager::loadStory() {
         });
 
     steps.push_back({ NarrativeType::DIALOGUE,
+            "??? : approche garcon/fille ...",
+            "npc_start"
+        });
+
+    steps.push_back({ NarrativeType::DIALOGUE,
         "Tu entends quelqu’un t’appeler depuis la maison...",
         "npc_intro_done"
         });
@@ -61,7 +66,7 @@ void NarrativeManager::update(float dt) {
     // ici on pourrait faire des effets (texte qui s'affiche progressivement, fade, etc.)
     // mais pour l’instant, on laisse vide pour garder simple
     if (Keyboard::isKeyPressed(Keyboard::Key::Enter)) {
-        active = false;
+        nextStep();
     }
 
 }

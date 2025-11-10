@@ -60,6 +60,10 @@ int main() {
 			}
 		}
 		narrativeManager.triggerEvent("start_game");
+		if (!narrativeManager.isActive()) {
+			narrativeManager.triggerEvent("npc_start");
+		}
+		
 			float dt = clock.restart().asSeconds();
 
 			//update part
