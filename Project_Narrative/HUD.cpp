@@ -36,7 +36,7 @@ void HUD::draw(RenderWindow& w) {
 
 void HUD::update() {
 	float currentHP = main->getHP();
-	float maxHP = 20.f; // faut de quoi recuperer le max hp avec une methode
+	float maxHP = main->getMaxHP(); // faut de quoi recuperer le max hp avec une methode
 
 	// ratio de vie
 	float ratio = currentHP / maxHP;

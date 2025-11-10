@@ -80,8 +80,13 @@ bool Level::checkCollision(const FloatRect& bounds) {
 
 void Level::update(float dt, MainCharacter& player, RenderWindow& window) {
 	// on vérifie si ça cause une collision :
+	for (auto& entity : entities) {
+		entity->update(dt, window);
+	}
 	if (checkCollision(player.getGlobalBounds())) {
 		player.undoMove();
 	}
+
+
 
 }

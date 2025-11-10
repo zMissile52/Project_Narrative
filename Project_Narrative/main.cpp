@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include "NarrativeManager.h"
 
 using namespace sf;
 
@@ -33,6 +34,8 @@ int main() {
 	HUD menu = game.getHUD();
 	Level level1 = game.getLevel();
 
+	NarrativeManager narrativeManager;
+
 	Clock clock;
 
 	while (window.isOpen()) {
@@ -48,54 +51,44 @@ int main() {
 			}
 			if (event->is<sf::Event::KeyPressed>()) {
 				auto kp = event->getIf<sf::Event::KeyPressed>();
-				if (kp && kp->code == sf::Keyboard::Key::Space) {
+				if (kp && kp->code == Keyboard::Key::Space) {
 					mainCharacter.startAttack(window);
+				}
+				if (kp && kp->code == Keyboard::Key::E) {
+					narrativeManager.triggerEvent("npc_intro_done");
 				}
 			}
 		}
-		float dt = clock.restart().asSeconds();
-		
-		//update part
-		mainCharacter.handleInput();
-		mainCharacter.update(dt, window);
-		menu.update();
-		level1.update(dt, mainCharacter, window);
+			float dt = clock.restart().asSeconds();
 
-		//reset page
-		window.clear(Color::Black);
+			//update part
+			mainCharacter.handleInput();
+			mainCharacter.update(dt, window);
+			menu.update();
+			level1.update(dt, mainCharacter, window);
 
-		//draw character
-		mainCharacter.draw(window);
+			//reset page
+			window.clear(Color::Black);
 
-		//draw level
-		level1.draw(window);
+			//draw character
+			mainCharacter.draw(window);
 
-		//draw hud
-		menu.draw(window);
+			//draw level
+			level1.draw(window);
 
-		window.display();
+			//draw hud
+			menu.draw(window);
+
+			window.display();
+
+
+
+
 	}
-
-	
-
-	
 }
 
 
 //enemy -> boss
-
-/*
-vois tu ce petit point c'est toi que l'on appelle la vie :
-et la mort c'est lui :
-montre moi comment tu te debrouilles face a elle
-
--> plot twist : celui qui te dis ça c'est le dieu de la mort et il t'affrontera si tu le bats
-
-game over text : Vous avez perdu la vie
-
-
-win : Vous avez echappez a la mort
-*/
 
 
 //TO DO LIST
