@@ -33,7 +33,7 @@ void NarrativeManager::loadStory() {
         });
 
     steps.push_back({ NarrativeType::DIALOGUE,
-            "??? : approche garcon/fille ...",
+            "tu es ce qu'on appelle une vie",
             "npc_start"
         });
 
@@ -51,7 +51,7 @@ void NarrativeManager::loadStory() {
 void NarrativeManager::triggerEvent(const std::string& name) {
     for (size_t i = 0; i < steps.size(); ++i) {
         NarrativeStep& step = steps[i];
-        if (!step.done && step.trigger == name) {
+        if (!step.done && step.trigger == name && !active) {
             std::cout << "Narration déclenchée : " << step.text << std::endl;
             currentIndex = i;
             textDisplay.setString(step.text);
@@ -65,6 +65,7 @@ void NarrativeManager::triggerEvent(const std::string& name) {
 void NarrativeManager::update(float dt) {
     // ici on pourrait faire des effets (texte qui s'affiche progressivement, fade, etc.)
     // mais pour l’instant, on laisse vide pour garder simple
+	if (!active) return;
     if (Keyboard::isKeyPressed(Keyboard::Key::Enter)) {
         nextStep();
     }

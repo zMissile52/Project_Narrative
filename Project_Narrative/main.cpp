@@ -38,6 +38,8 @@ int main() {
 
 	Clock clock;
 
+	
+	narrativeManager.triggerEvent("start_game");
 	while (window.isOpen()) {
 		while (auto event = window.pollEvent()) {
 			if (event->is<Event::Closed>()) {
@@ -55,13 +57,9 @@ int main() {
 					mainCharacter.startAttack(window);
 				}
 				if (kp && kp->code == Keyboard::Key::E) {
-					narrativeManager.triggerEvent("npc_intro_done");
+					narrativeManager.triggerEvent("npc_start");
 				}
 			}
-		}
-		narrativeManager.triggerEvent("start_game");
-		if (!narrativeManager.isActive()) {
-			narrativeManager.triggerEvent("npc_start");
 		}
 		
 			float dt = clock.restart().asSeconds();
