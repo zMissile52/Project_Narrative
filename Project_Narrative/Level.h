@@ -10,11 +10,11 @@ class Level
 {
 	private:
 		vector<RectangleShape> walls;
-		vector<Entity*> entities;
+		vector<NPC> entities;
 public:
 	Level();
 	void addWall(RectangleShape wall);
-	void addEntity(Entity& npc);
+	void addNPC(NPC npc);
 	void draw(RenderWindow& window);
 	void update(float dt, MainCharacter& player, RenderWindow& window);
 	bool checkCollision(const FloatRect& bounds);

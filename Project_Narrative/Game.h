@@ -7,6 +7,12 @@
 
 using namespace sf;
 
+enum GameState {
+	GAME,
+	MENU,
+	PAUSE
+};
+
 class Game
 {
 private:
@@ -21,6 +27,8 @@ private:
 	HUD menu;
 
 	NarrativeManager narrative;
+
+	GameState currentState = GAME;
 
 public:
 	Game(RenderWindow& window);

@@ -47,8 +47,8 @@ void Level::addWall(RectangleShape wall) {
 	walls.push_back(wall);
 }
 
-void Level::addEntity(Entity& npc) {
-	entities.push_back(&npc);
+void Level::addNPC(NPC npc) {
+	entities.push_back(npc);
 }
 
 void Level::draw(RenderWindow& window)
@@ -58,7 +58,7 @@ void Level::draw(RenderWindow& window)
 	}
 
 	for (auto& entity : entities) {
-		entity->draw(window);
+		entity.draw(window);
 	}
 }
 
@@ -70,7 +70,7 @@ bool Level::checkCollision(const FloatRect& bounds) {
 	}
 
 	for (auto& entity : entities) {
-		if (entity->getGlobalBounds().findIntersection(bounds)) {
+		if (entity.getGlobalBounds().findIntersection(bounds)) {
 			return true;
 		}
 	}
@@ -81,7 +81,7 @@ bool Level::checkCollision(const FloatRect& bounds) {
 void Level::update(float dt, MainCharacter& player, RenderWindow& window) {
 	// on vérifie si ça cause une collision :
 	for (auto& entity : entities) {
-		entity->update(dt, window);
+		entity.update(dt, window);
 	}
 	if (checkCollision(player.getGlobalBounds())) {
 		player.undoMove();

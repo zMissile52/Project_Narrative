@@ -1,30 +1,44 @@
 #include "Game.h"
 
 
+
 Game::Game(RenderWindow& window) : menu(&mainCharacter, window)
 {
 	npcs.push_back(NPC({ 400.f, 100.f }));
-	level1.addEntity(npcs.back());
+	level1.addNPC(npcs.back());
 }
 
 void Game::update(float dt, RenderWindow& window)
 {
-	mainCharacter.handleInput();
-	if (!narrative.isActive()) {
-		mainCharacter.update(dt, window);
+	switch (currentState) {
+	case GAME:
+		mainCharacter.handleInput();
+		if (!narrative.isActive()) {
+			mainCharacter.update(dt, window);
+		}
+		menu.update();
+		level1.update(dt, mainCharacter, window);
+		narrative.update(dt);
+		break;
+	default:
+		break;
 	}
-	menu.update();
-	level1.update(dt, mainCharacter, window);
-	narrative.update(dt);
 }
 
 void Game::draw(RenderWindow& window)
 {
-	window.clear();
-	level1.draw(window);
-	mainCharacter.draw(window);
-	menu.draw(window);
-	narrative.draw(window);
+	switch (currentState) {
+	case GAME :
+		window.clear();
+		level1.draw(window);
+		mainCharacter.draw(window);
+		menu.draw(window);
+		narrative.draw(window);
+		break;
+	default:
+		break;
+	}
+	
 }
 
 MainCharacter& Game::getMainCharacter()
