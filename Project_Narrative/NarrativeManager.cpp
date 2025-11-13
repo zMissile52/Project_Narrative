@@ -28,22 +28,17 @@ void NarrativeManager::loadStory() {
 
     // Exemple : 3 étapes narratives
     steps.push_back({ NarrativeType::INTRO,
-        "tu te reveilles dans une piece noir sans souvenir de qui tu es",
+        "Tu te reveilles dans une piece noir. \nTu as comme dernier souvenir : ton dernière échec",
         "start_game"
         });
 
     steps.push_back({ NarrativeType::DIALOGUE,
-            "tu es ce qu'on appelle une vie",
+            "Tu es ce qu'on appelle une vie. \nDerriere cette porte se trouve quelque chose qui la mettra \nen question",
             "npc_start"
         });
 
-    steps.push_back({ NarrativeType::DIALOGUE,
-        "Tu entends quelqu’un t’appeler depuis la maison...",
-        "npc_intro_done"
-        });
-
     steps.push_back({ NarrativeType::VICTORY,
-        "Tu a franchis la première etape d'une vie ! Profites de ta vie !",
+        "Tu a franchis la première etape d'une vie ! Joie à toi !",
         "player_won"
         });
 }
