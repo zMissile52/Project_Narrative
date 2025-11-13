@@ -26,6 +26,8 @@ public:
 	int getMaxHP() { return maxHp; }
 	Vector2f getPosition();
 
+	void setPosition(float x, float y);
+
 	//gere les inputs
 	void handleInput();
 	void update(float dt, RenderWindow& w);

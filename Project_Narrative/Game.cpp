@@ -4,11 +4,9 @@
 using namespace sf;
 
 
-Game::Game(RenderWindow& w) : window(w), menu(&mainCharacter, window)
+Game::Game(RenderWindow& w) : window(w), menu(&mainCharacter, window), level1(mainCharacter)
 {
-	
-	npcs.push_back(NPC({ 400.f, 100.f }));
-	level1.addNPC(npcs.back());
+	level1.addNPC(NPC({ 400.f, 100.f }));
 }
 
 void Game::startGame() {
@@ -30,9 +28,10 @@ void Game::startGame() {
 					mainCharacter.startAttack(window);
 				}
 				int NPCID = level1.NearNPC();
-				if (kp && kp->code == Keyboard::Key::E && NPCID != -1) {
-					level1.getNPCS()[NPCID].talk();
-					//narrativeManager.triggerEvent("npc_start");
+				if (kp && kp->code == Keyboard::Key::E && NPCID >= 0 && NPCID < level1.getNPCS().size()) {
+					//level1.getNPCS()[NPCID].talk();
+					narrative.triggerEvent("npc_start");
+					level1.doorOpen();
 				}
 			}
 		}
@@ -82,7 +81,7 @@ void Game::update(float dt, RenderWindow& window)
 			mainCharacter.update(dt, window);
 		}
 		menu.update();
-		level1.update(dt, mainCharacter, window);
+		level1.update(dt, window);
 		narrative.update(dt);
 		break;
 	default:

@@ -29,16 +29,7 @@ void NPC::draw(RenderWindow& w)
 {
 	w.draw(npcShape);
 
-    if (inDialogue) {
-        RectangleShape box(Vector2f(700.f, 100.f));
-        box.setPosition(Vector2f(50.f, 450.f));
-        box.setFillColor(Color(0, 0, 0, 180));
-        w.draw(box);
-
-        dialogueDisplay.setPosition(Vector2f(70.f, 470.f));
-        w.draw(dialogueDisplay);
-    }
-    else if (nearPlayer) {
+    if (nearPlayer) {
         Text prompt(font);
         prompt.setFont(font);
         prompt.setCharacterSize(16);

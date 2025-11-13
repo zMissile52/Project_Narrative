@@ -24,6 +24,11 @@ Vector2f MainCharacter::getPosition() {
 	return position;
 }
 
+void MainCharacter::setPosition(float x, float y) {
+	position.x = x;
+	position.y = y;
+}
+
 
 void MainCharacter::draw(RenderWindow& w)
 {

@@ -15,16 +15,23 @@ struct Door {
 class Level
 {
 	private:
+		int id;
+		MainCharacter& player;
 		vector<RectangleShape> walls;
 		Door door;
 		vector<NPC> entities;
+
+		void initialLevel();
 public:
-	Level();
+	Level(MainCharacter& mc);
+	void setLevel(int level);
+	
 	void addNPC(NPC npc);
-	vector<NPC> getNPCS();
+	vector<NPC>& getNPCS();
 	void draw(RenderWindow& window);
-	void update(float dt, MainCharacter& player, RenderWindow& window);
+	void update(float dt, RenderWindow& window);
 	int NearNPC();
 	bool checkCollision(const FloatRect& bounds);
+	void doorOpen();
 };
 
