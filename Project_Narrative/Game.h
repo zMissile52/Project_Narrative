@@ -16,6 +16,9 @@ enum GameState {
 class Game
 {
 private:
+
+	RenderWindow& window;
+
 	//initialise main character
 	MainCharacter mainCharacter;
 	
@@ -30,8 +33,11 @@ private:
 
 	GameState currentState = GAME;
 
+	Clock clock;
+
 public:
 	Game(RenderWindow& window);
+	void startGame();
 	void update(float dt, RenderWindow& window);
 	void draw(RenderWindow& window);
 	MainCharacter& getMainCharacter();

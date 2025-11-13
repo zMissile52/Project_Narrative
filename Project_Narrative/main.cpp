@@ -30,74 +30,7 @@ int main() {
 	//level1.addEntity(npc1);
 
 	Game game(window);
-	MainCharacter& mainCharacter = game.getMainCharacter();
-	HUD& menu = game.getHUD();
-	Level& level1 = game.getLevel();
-
-	NarrativeManager& narrativeManager = game.getNarrativeManager();
-
-	Clock clock;
-
-	
-	narrativeManager.triggerEvent("start_game");
-	while (window.isOpen()) {
-		while (auto event = window.pollEvent()) {
-			if (event->is<Event::Closed>()) {
-				window.close();
-			}
-			if (event->is<Event::MouseButtonPressed>()) {
-				auto mouseEvent = event->getIf<Event::MouseButtonPressed>();
-				if (mouseEvent && mouseEvent->button == Mouse::Button::Left) {
-					mainCharacter.startAttack(window);
-				}
-			}
-			if (event->is<sf::Event::KeyPressed>()) {
-				auto kp = event->getIf<sf::Event::KeyPressed>();
-				if (kp && kp->code == Keyboard::Key::Space) {
-					mainCharacter.startAttack(window);
-				}
-				int NPCID = level1.NearNPC();
-				if (kp && kp->code == Keyboard::Key::E && NPCID != -1) {
-					level1.getNPCS()[NPCID].talk();
-					//narrativeManager.triggerEvent("npc_start");
-				}
-			}
-		}
-		
-			float dt = clock.restart().asSeconds();
-
-			//update part
-			/*mainCharacter.handleInput();
-			mainCharacter.update(dt, window);
-			menu.update();
-			level1.update(dt, mainCharacter, window);
-			narrativeManager.update(dt);*/
-
-			game.update(dt, window);
-
-
-			//reset page
-			window.clear(Color::Black);
-
-			game.draw(window);
-
-			////draw character
-			//mainCharacter.draw(window);
-
-			////draw level
-			//level1.draw(window);
-
-			////draw hud
-			//menu.draw(window);
-
-			//narrativeManager.draw(window);
-
-			window.display();
-
-
-
-
-	}
+	game.startGame();
 }
 
 
