@@ -42,7 +42,7 @@ void NPC::draw(RenderWindow& w)
         Text prompt(font);
         prompt.setFont(font);
         prompt.setCharacterSize(16);
-        prompt.setFillColor(Color::Yellow);
+        prompt.setFillColor(Color::White);
         prompt.setString("Appuyez sur E pour parler");
         prompt.setPosition(Vector2f(npcShape.getPosition().x - 60.f, npcShape.getPosition().y - 40.f));
         w.draw(prompt);
@@ -60,11 +60,14 @@ FloatRect NPC::getGlobalBounds() const
 	return npcShape.getGlobalBounds();
 }
 
-void NPC::checkProximity(Vector2f& playerPos) {
+void NPC::checkProximity(Vector2f playerPos) {
     Vector2f diff = playerPos - npcShape.getPosition();
     float distance = std::sqrt(diff.x * diff.x + diff.y * diff.y);
     if (distance < 80.f) {
 		nearPlayer = true;  // joueur proche
+    }
+    else {
+        nearPlayer = false;
     }
 }
 

@@ -24,6 +24,7 @@ public:
 
 	int getHP();
 	int getMaxHP() { return maxHp; }
+	Vector2f getPosition();
 
 	//gere les inputs
 	void handleInput();

@@ -20,6 +20,10 @@ int MainCharacter::getHP() {
 	return hp;
 }
 
+Vector2f MainCharacter::getPosition() {
+	return position;
+}
+
 
 void MainCharacter::draw(RenderWindow& w)
 {
