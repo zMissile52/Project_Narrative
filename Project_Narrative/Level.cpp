@@ -46,6 +46,10 @@ void Level::addNPC(NPC npc) {
 	entities.push_back(npc);
 }
 
+vector<NPC> Level::getNPCS() {
+	return entities;
+}
+
 void Level::draw(RenderWindow& window)
 {
 	for (auto& wall : walls) {
@@ -89,7 +93,14 @@ void Level::update(float dt, MainCharacter& player, RenderWindow& window) {
 	if (checkCollision(player.getGlobalBounds())) {
 		player.undoMove();
 	}
+}
 
+int Level::NearNPC() {
+	for (int i = 0; i < entities.size(); i++) {
+		if (entities[i].getNearPlayer()) {
+			return i;
+		}
+	}
 
-
+	return -1;
 }

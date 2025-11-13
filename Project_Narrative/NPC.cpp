@@ -60,6 +60,10 @@ FloatRect NPC::getGlobalBounds() const
 	return npcShape.getGlobalBounds();
 }
 
+bool NPC::getNearPlayer() {
+    return nearPlayer;
+}
+
 void NPC::checkProximity(Vector2f playerPos) {
     Vector2f diff = playerPos - npcShape.getPosition();
     float distance = std::sqrt(diff.x * diff.x + diff.y * diff.y);

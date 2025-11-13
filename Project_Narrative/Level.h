@@ -21,8 +21,10 @@ class Level
 public:
 	Level();
 	void addNPC(NPC npc);
+	vector<NPC> getNPCS();
 	void draw(RenderWindow& window);
 	void update(float dt, MainCharacter& player, RenderWindow& window);
+	int NearNPC();
 	bool checkCollision(const FloatRect& bounds);
 };
 

@@ -31,8 +31,8 @@ int main() {
 
 	Game game(window);
 	MainCharacter& mainCharacter = game.getMainCharacter();
-	HUD menu = game.getHUD();
-	Level level1 = game.getLevel();
+	HUD& menu = game.getHUD();
+	Level& level1 = game.getLevel();
 
 	NarrativeManager& narrativeManager = game.getNarrativeManager();
 
@@ -56,8 +56,10 @@ int main() {
 				if (kp && kp->code == Keyboard::Key::Space) {
 					mainCharacter.startAttack(window);
 				}
-				if (kp && kp->code == Keyboard::Key::E) {
-					narrativeManager.triggerEvent("npc_start");
+				int NPCID = level1.NearNPC();
+				if (kp && kp->code == Keyboard::Key::E && NPCID != -1) {
+					level1.getNPCS()[NPCID].talk();
+					//narrativeManager.triggerEvent("npc_start");
 				}
 			}
 		}

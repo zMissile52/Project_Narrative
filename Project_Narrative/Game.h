@@ -35,8 +35,8 @@ public:
 	void update(float dt, RenderWindow& window);
 	void draw(RenderWindow& window);
 	MainCharacter& getMainCharacter();
-	HUD getHUD();
-	Level getLevel();
+	HUD& getHUD();
+	Level& getLevel();
 	NarrativeManager& getNarrativeManager();
 };
 

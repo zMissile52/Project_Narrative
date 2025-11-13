@@ -10,7 +10,7 @@ class NPC : public Entity
 private:
 	RectangleShape npcShape;
 	string dialogueText;
-	bool nearPlayer = true;
+	bool nearPlayer = false;
 	bool inDialogue = false;
 	Font font;
 	Text dialogueDisplay;
@@ -25,6 +25,8 @@ public:
 	void endDialogue();
 	
 	FloatRect getGlobalBounds() const override;
+
+	bool getNearPlayer();
 	
 	void checkProximity(Vector2f playerPos);
 	bool isInDialogue() const { return inDialogue; }

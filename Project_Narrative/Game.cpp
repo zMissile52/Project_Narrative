@@ -46,12 +46,12 @@ MainCharacter& Game::getMainCharacter()
 	return mainCharacter;
 }
 
-HUD Game::getHUD()
+HUD& Game::getHUD()
 { 
 return menu;
 }
 
-Level Game::getLevel()
+Level& Game::getLevel()
 { 
 	return level1; 
 }
