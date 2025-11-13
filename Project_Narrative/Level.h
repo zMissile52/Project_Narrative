@@ -6,17 +6,32 @@
 #include "NPC.h"
 using namespace sf;
 using namespace std;
+
+struct Door {
+	RectangleShape shape;
+	bool open = false;
+};
+
 class Level
 {
 	private:
+		int id;
+		MainCharacter& player;
 		vector<RectangleShape> walls;
-		vector<Entity*> entities;
+		Door door;
+		vector<NPC> entities;
+
+		void initialLevel();
 public:
-	Level();
-	void addWall(RectangleShape wall);
-	void addEntity(Entity& npc);
+	Level(MainCharacter& mc);
+	void setLevel(int level);
+	
+	void addNPC(NPC npc);
+	vector<NPC>& getNPCS();
 	void draw(RenderWindow& window);
-	void update(float dt, MainCharacter& player, RenderWindow& window);
+	void update(float dt, RenderWindow& window);
+	int NearNPC();
 	bool checkCollision(const FloatRect& bounds);
+	void doorOpen();
 };
 

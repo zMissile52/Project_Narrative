@@ -3,9 +3,9 @@
 using namespace sf;
 MainCharacter::MainCharacter()
 {
-	hp = 15;
-	position.x = 100.f;
-	position.y = 100.f;
+	hp = 3;
+	position.x = 400.f;
+	position.y = 500.f;
 	heart = CircleShape(10.f);
 	heart.setFillColor(Color(255, 0, 0, 100));
 	heart.setPosition(position);
@@ -18,6 +18,15 @@ MainCharacter::MainCharacter()
 
 int MainCharacter::getHP() {
 	return hp;
+}
+
+Vector2f MainCharacter::getPosition() {
+	return position;
+}
+
+void MainCharacter::setPosition(float x, float y) {
+	position.x = x;
+	position.y = y;
 }
 
 

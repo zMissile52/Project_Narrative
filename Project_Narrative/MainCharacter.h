@@ -11,6 +11,7 @@ private:
 	Vector2f direction;
 	float speed = 300.f;
 	int hp;
+	const int maxHp = 3;
 	//variable pour gestion d'atk
 	HitBox atkzone;
 	float attackTimer = 0;
@@ -22,6 +23,10 @@ public:
 	void draw(RenderWindow& w) override;
 
 	int getHP();
+	int getMaxHP() { return maxHp; }
+	Vector2f getPosition();
+
+	void setPosition(float x, float y);
 
 	//gere les inputs
 	void handleInput();
