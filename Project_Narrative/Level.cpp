@@ -35,16 +35,11 @@ Level::Level()
 	wall6.setFillColor(Color::Blue);
 	walls.push_back(wall6);
 
-	wall6.setSize({ 100.f, 20.f });
-	wall6.setPosition({ 350.f, 585.f });
-	wall6.setFillColor(Color::Yellow);
-	walls.push_back(wall6);
+	door.shape.setSize({ 100.f, 20.f });
+	door.shape.setPosition({ 350.f, 585.f });
+	door.shape.setFillColor(Color::Yellow);
+	
 
-}
-
-
-void Level::addWall(RectangleShape wall) {
-	walls.push_back(wall);
 }
 
 void Level::addNPC(NPC npc) {
@@ -60,9 +55,15 @@ void Level::draw(RenderWindow& window)
 	for (auto& entity : entities) {
 		entity.draw(window);
 	}
+
+	window.draw(door.shape);
 }
 
 bool Level::checkCollision(const FloatRect& bounds) {
+	if (door.shape.getGlobalBounds().findIntersection(bounds) && !door.open) {
+		return true;
+	}
+
 	for (auto& wall : walls) {
 		if (wall.getGlobalBounds().findIntersection(bounds)) {
 			return true;
@@ -74,6 +75,7 @@ bool Level::checkCollision(const FloatRect& bounds) {
 			return true;
 		}
 	}
+
 	return false;
 }
 
